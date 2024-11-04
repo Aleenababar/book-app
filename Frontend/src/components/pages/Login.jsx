@@ -30,7 +30,7 @@ function Login() {
       );
       setData({username: "", password: ""})
       console.log(response)
-      localStorage.setItem("id",response.data.id);
+      localStorage.setItem("id",response.data.Id);
       localStorage.setItem("token",response.data.token);
       dispatch(authActions.login());
       history("/")

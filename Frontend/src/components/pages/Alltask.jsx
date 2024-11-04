@@ -20,7 +20,7 @@ const configHeaders ={
     const fetch = async () => {
       try {
         const response = await axios.get("http://localhost:1000/api/v2/get-all-tasks", {
-          configHeaders , 
+          headers:configHeaders , 
         }
   
         );
@@ -32,7 +32,7 @@ const configHeaders ={
     };
     fetch()
     
-  });
+  },[]);
 
   return (
     <>
