@@ -10,8 +10,8 @@ const conn = async()=>{
          
         
     } catch (error) {
-        console.log("error was found")
+        console.log("error was found",error)
         
     }
 };
-conn();
+module.exports = conn;
