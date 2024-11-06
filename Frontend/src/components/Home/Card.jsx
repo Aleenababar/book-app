@@ -7,42 +7,8 @@ import { IoAddCircleOutline } from "react-icons/io5";
 import axios from "axios";
 import { FaRegEdit } from "react-icons/fa";
 
-const Card = ({ home, setInputDiv }) => {
+const Card = ({ home, setInputDiv,data ,fetch}) => {
 
-  const data = [
-    {
-      title: "Add New Book",
-    description: "Include details such as title, author, genre, and publication date.",
-      due_date: "2024-07-10",
-      status: "Completed",
-    },
-    {
-      
-      title: "Update Book Information",
-      description:
-      "Modify existing book details like title, author, or publication date."
-        ,
-      due_date: "2024-07-20",
-      status: "In Completed",
-    },
-    {
-      
-      title:
-        "Delete Book",
-      description:
-        "Remove a book from the library database permanently.",
-      due_date: "2024-08-15",
-      status: "In Progress",
-    },
-
-    { 
-      title: "List All Books",
-      description:
-       "Display a list of all books in the library.",
-      due_date: "2024-08-25",
-      status: "In Progress",
-    },
-  ];
   const configHeaders ={
     Id:localStorage.getItem("id"),authorization: `Bearer ${localStorage.getItem("token")}`
   
@@ -54,8 +20,10 @@ const Card = ({ home, setInputDiv }) => {
         ,{},
         { headers:configHeaders });
 
-      console.log(response);
-      
+        if(response?.data?.message){
+          fetch()
+          alert(response?.data?.message)
+        }      
     } catch (error) {
       console.log(error);
       
@@ -63,11 +31,13 @@ const Card = ({ home, setInputDiv }) => {
   }
   const handleImportant = async (id) =>{
     try {
-      const response= await axios.put(`http://localhost:1000/api/v2/update-imp-task/${id}`
-        ,{},
+      const response= await axios.put(`http://localhost:1000/api/v2/update-imp-task/${id}`,
+        {},
         { headers:configHeaders });
-
-      console.log(response);
+      if(response?.data?.message){
+        fetch()
+        alert(response?.data?.message)
+      }
       
     } catch (error) {
       console.log(error);
@@ -76,10 +46,12 @@ const Card = ({ home, setInputDiv }) => {
   }
   const deleteTask = async (id) =>{
     try {
-      const response= await axios.delete(`http://localhost:1000/api/v2/delete-task/${id}`,{},
+      const response= await axios.delete(`http://localhost:1000/api/v2/delete-task/${id}`,
         { headers:configHeaders });
-
-      console.log(response.data.message);
+        if(response?.data?.message){
+          fetch()
+          alert(response?.data?.message)
+        }
       
     } catch (error) {
       console.log(error);
@@ -89,29 +61,29 @@ const Card = ({ home, setInputDiv }) => {
    
   return (
     <div className="grid grid-cols-3 gap-4 p-4 ">
-      {data &&
+      {data?.length>0 &&
         data.map((items, i) => (
           <div
             key={i} // Add a key prop here
             className="flex flex-col justify-between bg-gray-800 rounded-sm p-4"
           >
             <div>
-              <h3 className="text-xl font-semibold ">{items.title}</h3>
-              <p className="text-gray-400">{items.description}</p>
-              <p>{items.due_date}</p>
+              <h3 className="text-xl font-semibold ">{items?.title}</h3>
+              <p className="text-gray-400">{items?.desc}</p>
+              <p>{items?.due_date}</p>
             </div>
 
             <div className="mt-4 items-center w-full flex justify-around text-xl">
               <button
                 className={`${
-                  items.complete === false ? "bg-green-500" : "bg-red-600"
-                } rounded p-2 w-3/6`} onClick={()=>handleCompleteTask(items._id)}
+                  items?.complete === false ? "bg-green-500" : "bg-red-600"
+                } rounded p-2 w-3/6`} onClick={()=>handleCompleteTask(items?._id)}
               >
-                {items.complete === true ? "Completed" : "In Complete"}
+                {items?.complete === true ? "Completed" : "In Complete"}
               </button>
               <div className="p-2 text-white w-3/6 text-2xl flex justify-around font-semibold">
                 <button onClick={()=>handleImportant(items._id)}>
-                  {items.important === false ? <IoCreateSharp /> : <FaRegEdit  className="text-pink-500"/>}
+                  {items?.important === false ? <IoCreateSharp /> : <FaRegEdit  className="text-pink-500"/>}
                   
                 </button>
                 <button>
@@ -120,7 +92,7 @@ const Card = ({ home, setInputDiv }) => {
                 <button>
                   <MdOutlineSystemUpdateAlt />
                 </button>
-                <button onClick={()=>deleteTask(items._id)}> 
+                <button onClick={()=>deleteTask(items?._id)}> 
                   <RiDeleteBinFill />
                 </button>
               </div>

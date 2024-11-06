@@ -64,7 +64,7 @@ useEffect(() => {
   };
   fetch();
   
-});
+},[]);
 
   return (
  <>

@@ -14,10 +14,10 @@ const userSchema = new mongoose.Schema({
             type:String,
             required:true,
         },
-        tasks:{
-            type:mongoose.Types.ObjectId, 
-            ref:"task",
-        },
+        tasks: [{  // Change single ObjectId to  array of ObjectIds
+               type: mongoose.Types.ObjectId,
+               ref: "task",
+               }]
         },
 );
 module.exports =mongoose.model("user",userSchema);

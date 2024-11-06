@@ -16,24 +16,22 @@ const configHeaders ={
 
 } 
 
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        const response = await axios.get("http://localhost:1000/api/v2/get-all-tasks", {
-          headers:configHeaders , 
-        }
-  
-        );
-        setData(response.data.data);
-      } catch (error) {
-        console.error("Error fetching tasks:", error);
-      }
+const fetch = async () => {
+  try {
+    const response = await axios.get("http://localhost:1000/api/v2/get-all-tasks", {
+      headers:configHeaders , 
+    }
     
-    };
-    fetch()
-    
-  },[]);
-   Data && console.log(Data);
+  );
+  setData(response.data.data);
+} catch (error) {
+  console.error("Error fetching tasks:", error);
+}
+
+};
+useEffect(() => {
+  fetch()
+},[]);
   
 
   return (
@@ -45,10 +43,10 @@ const configHeaders ={
 
             </button>
         </div>
-    {Data &&  (<Card home ={"true"} setInputDiv={setInputDiv} data={Data.tasks} />)}
+    {Data &&  (<Card home ={"true"} setInputDiv={setInputDiv} data={Data.tasks} fetch={fetch}/>)}
     </div>
     <div>
-      <InputData InputDiv={InputDiv} setInputDiv={setInputDiv}/>
+      <InputData InputDiv={InputDiv} setInputDiv={setInputDiv} fetch={fetch}/>
     </div>
     
     
