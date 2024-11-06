@@ -14,7 +14,7 @@ const [Data,setData]=useState();
 const configHeaders ={
   id:localStorage.getItem("id"),authorization: `Bearer ${localStorage.getItem("token")}`
 
-}
+} 
 
   useEffect(() => {
     const fetch = async () => {
@@ -33,6 +33,8 @@ const configHeaders ={
     fetch()
     
   },[]);
+   Data && console.log(Data);
+  
 
   return (
     <>
@@ -43,7 +45,7 @@ const configHeaders ={
 
             </button>
         </div>
-    {Data &&  <Card home ={"true"} setInputDiv={setInputDiv} data={Data.tasks} />}
+    {Data &&  (<Card home ={"true"} setInputDiv={setInputDiv} data={Data.tasks} />)}
     </div>
     <div>
       <InputData InputDiv={InputDiv} setInputDiv={setInputDiv}/>

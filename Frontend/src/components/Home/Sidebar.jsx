@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState,useEffect} from 'react';
 import { CgNotes } from "react-icons/cg";
 import { MdLabelImportant } from "react-icons/md";
 import { FaCheckDouble } from "react-icons/fa6";
@@ -7,7 +7,7 @@ import { GrInProgress } from "react-icons/gr";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth';
-// import axios from 'axios';
+import axios from 'axios';
 function Sidebar() {
   const dispatch =useDispatch();
   const history =useNavigate();
@@ -38,7 +38,7 @@ function Sidebar() {
 
 
 ];
-// const [Data,setData]=useState();
+const [Data,setData]=useState();
 const logout=()=>{
 
   dispatch(authActions.logout());
@@ -47,19 +47,33 @@ const logout=()=>{
   history("/signup");
 
 }
-// const configHeaders ={
-//   Id:localStorage.getItem("id"),Authorization: `Bearer ${localStorage.getItem("token")}`
+const configHeaders ={
+  Id:localStorage.getItem("id"),Authorization: `Bearer ${localStorage.getItem("token")}`
 
-// }
+}
+useEffect(() => {
+  const fetch = async () => {
+    try {
+      const response = await axios.get("http://localhost:1000/api/v2/get-all-tasks", { headers : configHeaders ,}
+
+      );
+      setData(response.data.data);
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
+    }
+  };
+  fetch();
+  
+});
 
   return (
  <>
-    <div>
+    {Data && (<div>
 
-<h2 className='text-xl font-semibold'>Task Management</h2>
-<h4 className='text-gray-400 mb-1'>aleenanasir05@gmail.com</h4>
+<h2 className='text-xl font-semibold'>{Data.username}</h2>
+<h4 className='text-gray-400 mb-1'>{Data.email}</h4>
 <hr />
-</div> 
+</div> )}
       <div className='my-2'>
         {
           data.map((items,i)=>(
