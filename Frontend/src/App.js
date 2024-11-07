@@ -5,7 +5,6 @@ import Alltask from "./components/pages/Alltask";
 import Importanttask from "./components/pages/Importanttask";
 import Completedtask from "./components/pages/Completedtask";
 import Incompletedtask from "./components/pages/Incompletedtask";
-import Inprogresstask from "./components/pages/Inprogresstask";
 import Signup from "./components/pages/Signup";
 import Login from "./components/pages/Login";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,7 +32,6 @@ function App() {
           <Route exact path="/importanttask" element={<Importanttask />} />
           <Route exact path="/completedtask" element={<Completedtask />} />
           <Route exact path="/incompletedtask" element={<Incompletedtask />} />
-          <Route exact path="/inprogresstask" element={<Inprogresstask />} />
         </Route>
 
         <Route exact path="/signup" element={<Signup />} />

@@ -72,7 +72,7 @@ router.put("/update-imp-task/:id",authenticateToken,async (req,res)=>{
     const TaskData = await Task.findById(id);
     const impTask= TaskData.important;
     await Task.findByIdAndUpdate(id,{important:!impTask});
-    res.status(200).json({message:"Task updated successfully!"});
+    res.status(200).json({message:"Task marked important successfully!"});
 
     
   } catch (error) {

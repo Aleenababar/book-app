@@ -11,6 +11,7 @@ import axios from "axios";
 function Alltask() {
   const [InputDiv,setInputDiv]=useState("hidden");
 const [Data,setData]=useState();
+const [UpdatedData,setUpdatedData]=useState({id:'',title :'',desc :''})
 const configHeaders ={
   id:localStorage.getItem("id"),authorization: `Bearer ${localStorage.getItem("token")}`
 
@@ -30,6 +31,8 @@ const fetch = async () => {
 
 };
 useEffect(() => {
+  
+
   fetch()
 },[]);
   
@@ -43,10 +46,10 @@ useEffect(() => {
 
             </button>
         </div>
-    {Data &&  (<Card home ={"true"} setInputDiv={setInputDiv} data={Data.tasks} fetch={fetch}/>)}
+    {Data &&  (<Card home ={"true"} setInputDiv={setInputDiv} data={Data.tasks} fetch={fetch} setUpdatedData={setUpdatedData}/>)}
     </div>
     <div>
-      <InputData InputDiv={InputDiv} setInputDiv={setInputDiv} fetch={fetch}/>
+      <InputData InputDiv={InputDiv} setInputDiv={setInputDiv} fetch={fetch} UpdatedData={UpdatedData} setUpdatedData={setUpdatedData}/>
     </div>
     
     

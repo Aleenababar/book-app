@@ -65,11 +65,11 @@ function Login() {
           placeholder="Enter your Password"
           className="bg-gray-700 px-3 py-2 my-3  w-full rounded"
         />
-        <div>
-          <button className="bg-blue-400 py-2 px-3  text-xl text-black font-semifold rounded  " onClick={submit}>
+        <div className="w-full flex items-center justify-between">
+          <button className="bg-blue-400 py-2 px-3 text-xl  text-black font-semifold rounded  " onClick={submit}>
             Login
           </button>
-          <Link to="/signup">You have not an account. Sign up!</Link>
+          <Link to="/signup"  className="text-gray-400">Not having an account? Sign up!</Link>
         </div>
       </div>
     </div>

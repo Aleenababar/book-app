@@ -1,13 +1,12 @@
 import React  from "react";
 import { IoCreateSharp } from "react-icons/io5";
-import { MdOutlineLibraryAdd } from "react-icons/md";
 import { MdOutlineSystemUpdateAlt } from "react-icons/md";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { IoAddCircleOutline } from "react-icons/io5";
 import axios from "axios";
 import { FaRegEdit } from "react-icons/fa";
 
-const Card = ({ home, setInputDiv,data ,fetch}) => {
+const Card = ({ home, setInputDiv,data ,fetch,setUpdatedData}) => {
 
   const configHeaders ={
     Id:localStorage.getItem("id"),authorization: `Bearer ${localStorage.getItem("token")}`
@@ -43,6 +42,11 @@ const Card = ({ home, setInputDiv,data ,fetch}) => {
       console.log(error);
       
     }
+  }
+  const handleUpdate = (id,title,desc) =>{
+    setInputDiv("fixed");
+    setUpdatedData({id :id,title : title,desc: desc})
+
   }
   const deleteTask = async (id) =>{
     try {
@@ -86,12 +90,10 @@ const Card = ({ home, setInputDiv,data ,fetch}) => {
                   {items?.important === false ? <IoCreateSharp /> : <FaRegEdit  className="text-pink-500"/>}
                   
                 </button>
-                <button>
-                  <MdOutlineLibraryAdd />
-                </button>
-                <button>
+                
+                {home !== "false" && (<button onClick={()=>handleUpdate(items?._id,items?.title,items?.desc)}>
                   <MdOutlineSystemUpdateAlt />
-                </button>
+                </button>)}
                 <button onClick={()=>deleteTask(items?._id)}> 
                   <RiDeleteBinFill />
                 </button>

@@ -3,7 +3,6 @@ import { CgNotes } from "react-icons/cg";
 import { MdLabelImportant } from "react-icons/md";
 import { FaCheckDouble } from "react-icons/fa6";
 import { TbNotebookOff } from "react-icons/tb";
-import { GrInProgress } from "react-icons/gr";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth';
@@ -24,9 +23,8 @@ function Sidebar() {
   title:"Important tasks",
   icon: <MdLabelImportant />,  link: "/importanttask",
 },
-{
-  title:"In Progress tasks",icon: <GrInProgress />,  link: "/inprogresstask",
-}
+
+
 ,{
   title:"Incompleted tasks",
   icon: <TbNotebookOff /> , link: "/incompletedtask"
@@ -62,8 +60,13 @@ useEffect(() => {
       console.error("Error fetching tasks:", error);
     }
   };
-  fetch();
+  if ( localStorage.getItem("id") && localStorage.getItem("token")
+    
+  ){
+    fetch();
+  }
   
+  // eslint-disable-next-line
 },[]);
 
   return (

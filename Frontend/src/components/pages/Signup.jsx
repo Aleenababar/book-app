@@ -72,14 +72,14 @@ function Signup() {
             placeholder="Enter your Password"
             className="bg-gray-700 px-3 py-2 my-3  w-full rounded"
           />
-          <div className="flex text-md gap-4">
+          <div className=" w-full flex items-center justify-between">
             <button
               className="bg-blue-400 py-2 px-3  text-xl text-black font-semifold rounded  "
               onClick={submit}
             >
               SignUp
             </button>
-            <Link to="/login">Already you have account just Login</Link>
+            <Link to="/login" className="text-gray-400">Already you have an account just Login</Link>
           </div>
         </div>
       </div>
