@@ -5,6 +5,7 @@ import axios from "axios"
 function Pendingtask() {
   const [Data,setData]=useState();
   
+  
   const configHeaders ={
     id:localStorage.getItem("id"),authorization: `Bearer ${localStorage.getItem("token")}`
   
@@ -28,7 +29,7 @@ useEffect(() => {
  console.log(Data)
   return (
     <div>
-   {Data &&  <Card home={"false"} data={Data}  /> }
+   <Card home={"false"} data={Data}  /> 
     </div>
   )
 }
