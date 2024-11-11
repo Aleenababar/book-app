@@ -113,7 +113,7 @@ const Card = ({ home, setInputDiv, data, fetch, setUpdatedData }) => {
                   </button>
                 )}
                 <button onClick={() => deleteTask(item?._id)}>
-                  <RiDeleteBinFill />
+                  <RiDeleteBinFill/>
                 </button>
               </div>
             </div>
