@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { GiCrossedBones } from "react-icons/gi";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import {  toast } from "react-toastify";
 
 function InputData({ InputDiv, setInputDiv, fetch, UpdatedData, setUpdatedData }) {
   const [state, setState] = useState({
@@ -129,7 +128,6 @@ function InputData({ InputDiv, setInputDiv, fetch, UpdatedData, setUpdatedData }
           )}
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 }
