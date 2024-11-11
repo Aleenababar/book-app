@@ -97,7 +97,7 @@ const Card = ({ home, setInputDiv, data, fetch, setUpdatedData }) => {
                 {item?.complete ? "Completed" : "Incomplete"}
               </button>
               <div className="p-2 text-white w-3/6 text-2xl flex justify-around font-semibold">
-                <button onClick={() =>{if(item?.important)return toast.success("Already added to important!"); handleImportant(item._id)}}>
+                <button onClick={() =>  handleImportant(item._id)}>
                   {item?.important ? (
                     <FaRegEdit className="text-pink-500" />
                   ) : (
