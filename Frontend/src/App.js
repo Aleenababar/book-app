@@ -9,6 +9,8 @@ import Signup from "./components/pages/Signup";
 import Login from "./components/pages/Login";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "./store/auth";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const navigate = useNavigate();
@@ -37,6 +39,7 @@ function App() {
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/login" element={<Login />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

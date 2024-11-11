@@ -27,7 +27,7 @@ function Completedtask() {
    console.log(Data)
   return (
     <div>
-    <Card home={"false"} data={Data}/>
+    <Card home={"false"} data={Data} fetch={fetch}/>
     </div>
   )
 }

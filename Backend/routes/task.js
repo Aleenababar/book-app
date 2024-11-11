@@ -23,7 +23,6 @@ router.get("/get-all-tasks", authenticateToken, async (req, res) => {
   try {
     const { id } = req.headers;
     const userData = await User.findById(id).populate({path:"tasks",options:{sort:{createdAt:-1}},});
-    console.log(userData)
     res.status(200).json({ data: userData });
   } catch (error) {
     console.error("Error:", error);

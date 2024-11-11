@@ -3,13 +3,14 @@ import { CgNotes } from "react-icons/cg";
 import { MdLabelImportant } from "react-icons/md";
 import { FaCheckDouble } from "react-icons/fa6";
 import { TbNotebookOff } from "react-icons/tb";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth';
 import axios from 'axios';
 function Sidebar() {
   const dispatch =useDispatch();
   const history =useNavigate();
+  const location=useLocation()
 
   const data=[
     {title:"All tasks", icon: <CgNotes />,
@@ -80,7 +81,7 @@ useEffect(() => {
       <div className='my-2'>
         {
           data.map((items,i)=>(
-              <Link  to={items.link} key={i} className='flex my-2 items-center hover:bg-gray-600 p-2 rounded transition-all duration-300'>
+              <Link  to={items.link} key={i} className={`flex my-2 items-center hover:bg-gray-600 p-2 rounded transition-all duration-300 ${location?.pathname==items.link?'bg-gray-600':''}`}>
                 {items.icon} &nbsp; {items.title}
               </Link>
 

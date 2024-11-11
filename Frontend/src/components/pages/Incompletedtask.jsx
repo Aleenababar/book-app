@@ -26,10 +26,13 @@ function Pendingtask() {
 useEffect(() => {
   fetch()
 },[]);
- console.log(Data)
   return (
     <div>
+<<<<<<< HEAD
    <Card home={"false"} data={Data}  /> 
+=======
+   {Data &&  <Card home={"false"} data={Data} fetch={fetch}  /> }
+>>>>>>> e613817a9124a26f0374cde85f0dc8b605ff8d40
     </div>
   )
 }

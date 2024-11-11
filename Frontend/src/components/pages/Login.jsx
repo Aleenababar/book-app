@@ -29,7 +29,6 @@ function Login() {
         Data
       );
       setData({username: "", password: ""})
-      console.log(response)
       localStorage.setItem("id",response.data.Id);
       localStorage.setItem("token",response.data.token);
       dispatch(authActions.login());
