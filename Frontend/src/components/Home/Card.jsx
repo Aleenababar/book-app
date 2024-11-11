@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoCreateSharp } from "react-icons/io5";
 import { MdOutlineSystemUpdateAlt } from "react-icons/md";
 import { RiDeleteBinFill } from "react-icons/ri";
@@ -14,7 +14,7 @@ const Card = ({ home, setInputDiv, data, fetch, setUpdatedData }) => {
     Id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
   };
-
+ const [importantTasks,setImportantTasks] =useState([]);
   const handleCompleteTask = async (id) => {
     try {
       const response = await axios.put(
@@ -34,6 +34,8 @@ const Card = ({ home, setInputDiv, data, fetch, setUpdatedData }) => {
   };
 
   const handleImportant = async (id) => {
+    
+    
     try {
       const response = await axios.put(
         `http://localhost:1000/api/v2/update-imp-task/${id}`,
